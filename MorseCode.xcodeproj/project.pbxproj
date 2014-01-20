@@ -21,6 +21,7 @@
 		20364897188DBCB700B9C798 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20364879188DBCB600B9C798 /* UIKit.framework */; };
 		2036489F188DBCB700B9C798 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2036489D188DBCB700B9C798 /* InfoPlist.strings */; };
 		203648A1188DBCB700B9C798 /* MorseCodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 203648A0188DBCB700B9C798 /* MorseCodeTests.m */; };
+		203648AC188DC8C000B9C798 /* NSString+MorseCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 203648AB188DC8C000B9C798 /* NSString+MorseCode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,8 @@
 		2036489C188DBCB700B9C798 /* MorseCodeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MorseCodeTests-Info.plist"; sourceTree = "<group>"; };
 		2036489E188DBCB700B9C798 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		203648A0188DBCB700B9C798 /* MorseCodeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MorseCodeTests.m; sourceTree = "<group>"; };
+		203648AA188DC8C000B9C798 /* NSString+MorseCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MorseCode.h"; sourceTree = "<group>"; };
+		203648AB188DC8C000B9C798 /* NSString+MorseCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MorseCode.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 				20364887188DBCB600B9C798 /* Main.storyboard */,
 				2036488A188DBCB600B9C798 /* CAMViewController.h */,
 				2036488B188DBCB600B9C798 /* CAMViewController.m */,
+				203648AA188DC8C000B9C798 /* NSString+MorseCode.h */,
+				203648AB188DC8C000B9C798 /* NSString+MorseCode.m */,
 				2036488D188DBCB600B9C798 /* Images.xcassets */,
 				2036487C188DBCB600B9C798 /* Supporting Files */,
 			);
@@ -253,6 +258,7 @@
 				2036488C188DBCB600B9C798 /* CAMViewController.m in Sources */,
 				20364886188DBCB600B9C798 /* CAMAppDelegate.m in Sources */,
 				20364882188DBCB600B9C798 /* main.m in Sources */,
+				203648AC188DC8C000B9C798 /* NSString+MorseCode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +467,7 @@
 				203648A6188DBCB700B9C798 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		203648A7188DBCB700B9C798 /* Build configuration list for PBXNativeTarget "MorseCodeTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +476,7 @@
 				203648A9188DBCB700B9C798 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CAMViewController : UIViewController
+@interface CAMViewController : UIViewController{
+    NSArray *arrayForOneLetteredStrings;
+    NSArray* arrayOfStringsRepresentingAMorseCodeLetters;
+}
+
+@property (weak, nonatomic) IBOutlet UITextField *myTextField;
+@property (weak, nonatomic) IBOutlet UILabel *myLabel;
+
+- (IBAction)goWasHit:(id)sender;
 
 @end
