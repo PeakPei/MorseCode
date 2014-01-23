@@ -10,10 +10,12 @@
 
 @interface NSString (MorseCode)
 
-+(NSArray *)getArrayOfCapitalSpacelessOneLetteredStrings:(NSString*)theWord;
++(NSArray *)getArrayOfCapitalOneLetteredStrings:(NSString*)theWords;
 
-+(NSString*)returnAStringRepresentingTheMorseCodeNumberOfThisLetter:(NSString*)theCharacter;
++(NSString*)returnAStringRepresentingAnEntireMorseCodeLetter:(NSString*)theCharacter;
 
-+(NSArray*)returnAnArrayOfMorseCodeSymbolsFromAWord:(NSString*)theWord;
++(NSArray*)returnAnArrayOfArraysWithMorseSymbolsFromSentence:(NSString*)theWords;
+
++(NSArray*)returnAnArrayOfSymbolsForALetter:(NSString*)theEnglishLetter;
 
 @end

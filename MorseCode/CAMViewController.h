@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CAMViewController : UIViewController{
-    NSArray *arrayForOneLetteredStrings;
-    NSArray* arrayOfStringsRepresentingAMorseCodeLetters;
+@interface CAMViewController : UIViewController<UITextFieldDelegate>{
+    NSArray* arrayOfStringsRepresentingMorseCodeLetters;
+    BOOL goIsNowTheCancellButton;
+    int letterOrSpaceIterater;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *myTextField;
