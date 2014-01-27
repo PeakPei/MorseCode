@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08167E07E2AB4C20B57848D5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D576EBAD0CA4335AD18DA42 /* libPods.a */; };
 		20364876188DBCB600B9C798 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20364875188DBCB600B9C798 /* Foundation.framework */; };
 		20364878188DBCB600B9C798 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20364877188DBCB600B9C798 /* CoreGraphics.framework */; };
 		2036487A188DBCB600B9C798 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20364879188DBCB600B9C798 /* UIKit.framework */; };
 		20364880188DBCB600B9C798 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2036487E188DBCB600B9C798 /* InfoPlist.strings */; };
 		20364882188DBCB600B9C798 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20364881188DBCB600B9C798 /* main.m */; };
-		20364886188DBCB600B9C798 /* CAMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20364885188DBCB600B9C798 /* CAMAppDelegate.m */; };
 		20364889188DBCB600B9C798 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20364887188DBCB600B9C798 /* Main.storyboard */; };
-		2036488C188DBCB600B9C798 /* CAMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2036488B188DBCB600B9C798 /* CAMViewController.m */; };
 		2036488E188DBCB600B9C798 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2036488D188DBCB600B9C798 /* Images.xcassets */; };
 		20364895188DBCB700B9C798 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20364894188DBCB700B9C798 /* XCTest.framework */; };
 		20364896188DBCB700B9C798 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20364875188DBCB600B9C798 /* Foundation.framework */; };
@@ -22,6 +21,12 @@
 		2036489F188DBCB700B9C798 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2036489D188DBCB700B9C798 /* InfoPlist.strings */; };
 		203648A1188DBCB700B9C798 /* MorseCodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 203648A0188DBCB700B9C798 /* MorseCodeTests.m */; };
 		203648AC188DC8C000B9C798 /* NSString+MorseCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 203648AB188DC8C000B9C798 /* NSString+MorseCode.m */; };
+		204A624C1890DC16004BD9EE /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204A624B1890DC16004BD9EE /* RootViewController.m */; };
+		204A624F1890DDBF004BD9EE /* ReceiverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204A624E1890DDBF004BD9EE /* ReceiverViewController.m */; };
+		204A62521890DDD1004BD9EE /* SenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 204A62511890DDD1004BD9EE /* SenderViewController.m */; };
+		204A62541890DF8E004BD9EE /* CAMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 204A62531890DF8E004BD9EE /* CAMAppDelegate.m */; };
+		204A625C1890F6EC004BD9EE /* NSString+MorseArrayToLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 204A625B1890F6EC004BD9EE /* NSString+MorseArrayToLetter.m */; };
+		204A625F18917C15004BD9EE /* CFMagicEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = 204A625E18917C15004BD9EE /* CFMagicEvents.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,10 +49,7 @@
 		20364881188DBCB600B9C798 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		20364883188DBCB600B9C798 /* MorseCode-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MorseCode-Prefix.pch"; sourceTree = "<group>"; };
 		20364884188DBCB600B9C798 /* CAMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAMAppDelegate.h; sourceTree = "<group>"; };
-		20364885188DBCB600B9C798 /* CAMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAMAppDelegate.m; sourceTree = "<group>"; };
 		20364888188DBCB600B9C798 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		2036488A188DBCB600B9C798 /* CAMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAMViewController.h; sourceTree = "<group>"; };
-		2036488B188DBCB600B9C798 /* CAMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CAMViewController.m; sourceTree = "<group>"; };
 		2036488D188DBCB600B9C798 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		20364893188DBCB700B9C798 /* MorseCodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MorseCodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20364894188DBCB700B9C798 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -56,6 +58,19 @@
 		203648A0188DBCB700B9C798 /* MorseCodeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MorseCodeTests.m; sourceTree = "<group>"; };
 		203648AA188DC8C000B9C798 /* NSString+MorseCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MorseCode.h"; sourceTree = "<group>"; };
 		203648AB188DC8C000B9C798 /* NSString+MorseCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MorseCode.m"; sourceTree = "<group>"; };
+		204A624A1890DC16004BD9EE /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		204A624B1890DC16004BD9EE /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		204A624D1890DDBF004BD9EE /* ReceiverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiverViewController.h; sourceTree = "<group>"; };
+		204A624E1890DDBF004BD9EE /* ReceiverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiverViewController.m; sourceTree = "<group>"; };
+		204A62501890DDD1004BD9EE /* SenderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenderViewController.h; sourceTree = "<group>"; };
+		204A62511890DDD1004BD9EE /* SenderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SenderViewController.m; sourceTree = "<group>"; };
+		204A62531890DF8E004BD9EE /* CAMAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAMAppDelegate.m; sourceTree = "<group>"; };
+		204A625A1890F6EC004BD9EE /* NSString+MorseArrayToLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MorseArrayToLetter.h"; sourceTree = "<group>"; };
+		204A625B1890F6EC004BD9EE /* NSString+MorseArrayToLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MorseArrayToLetter.m"; sourceTree = "<group>"; };
+		204A625D18917C15004BD9EE /* CFMagicEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFMagicEvents.h; sourceTree = "<group>"; };
+		204A625E18917C15004BD9EE /* CFMagicEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFMagicEvents.m; sourceTree = "<group>"; };
+		2D576EBAD0CA4335AD18DA42 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		4356823E0BE7479F861D1090 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +81,7 @@
 				20364878188DBCB600B9C798 /* CoreGraphics.framework in Frameworks */,
 				2036487A188DBCB600B9C798 /* UIKit.framework in Frameworks */,
 				20364876188DBCB600B9C798 /* Foundation.framework in Frameworks */,
+				08167E07E2AB4C20B57848D5 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +105,7 @@
 				2036489A188DBCB700B9C798 /* MorseCodeTests */,
 				20364874188DBCB600B9C798 /* Frameworks */,
 				20364873188DBCB600B9C798 /* Products */,
+				4356823E0BE7479F861D1090 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +125,7 @@
 				20364877188DBCB600B9C798 /* CoreGraphics.framework */,
 				20364879188DBCB600B9C798 /* UIKit.framework */,
 				20364894188DBCB700B9C798 /* XCTest.framework */,
+				2D576EBAD0CA4335AD18DA42 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -116,12 +134,12 @@
 			isa = PBXGroup;
 			children = (
 				20364884188DBCB600B9C798 /* CAMAppDelegate.h */,
-				20364885188DBCB600B9C798 /* CAMAppDelegate.m */,
+				204A62531890DF8E004BD9EE /* CAMAppDelegate.m */,
 				20364887188DBCB600B9C798 /* Main.storyboard */,
-				2036488A188DBCB600B9C798 /* CAMViewController.h */,
-				2036488B188DBCB600B9C798 /* CAMViewController.m */,
-				203648AA188DC8C000B9C798 /* NSString+MorseCode.h */,
-				203648AB188DC8C000B9C798 /* NSString+MorseCode.m */,
+				204A624A1890DC16004BD9EE /* RootViewController.h */,
+				204A624B1890DC16004BD9EE /* RootViewController.m */,
+				204A62561890F2C9004BD9EE /* Sender */,
+				204A62551890F2B4004BD9EE /* Receiver */,
 				2036488D188DBCB600B9C798 /* Images.xcassets */,
 				2036487C188DBCB600B9C798 /* Supporting Files */,
 			);
@@ -157,6 +175,30 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		204A62551890F2B4004BD9EE /* Receiver */ = {
+			isa = PBXGroup;
+			children = (
+				204A624D1890DDBF004BD9EE /* ReceiverViewController.h */,
+				204A624E1890DDBF004BD9EE /* ReceiverViewController.m */,
+				204A625A1890F6EC004BD9EE /* NSString+MorseArrayToLetter.h */,
+				204A625B1890F6EC004BD9EE /* NSString+MorseArrayToLetter.m */,
+				204A625D18917C15004BD9EE /* CFMagicEvents.h */,
+				204A625E18917C15004BD9EE /* CFMagicEvents.m */,
+			);
+			name = Receiver;
+			sourceTree = "<group>";
+		};
+		204A62561890F2C9004BD9EE /* Sender */ = {
+			isa = PBXGroup;
+			children = (
+				204A62501890DDD1004BD9EE /* SenderViewController.h */,
+				204A62511890DDD1004BD9EE /* SenderViewController.m */,
+				203648AA188DC8C000B9C798 /* NSString+MorseCode.h */,
+				203648AB188DC8C000B9C798 /* NSString+MorseCode.m */,
+			);
+			name = Sender;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,9 +206,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 203648A4188DBCB700B9C798 /* Build configuration list for PBXNativeTarget "MorseCode" */;
 			buildPhases = (
+				016AA40C4E7A485393134FF7 /* Check Pods Manifest.lock */,
 				2036486E188DBCB600B9C798 /* Sources */,
 				2036486F188DBCB600B9C798 /* Frameworks */,
 				20364870188DBCB600B9C798 /* Resources */,
+				D3DC417E1E0341FFBF22E9BA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,6 +249,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Chris Meehan";
 				TargetAttributes = {
+					20364871188DBCB600B9C798 = {
+						DevelopmentTeam = 74Z4B27R7N;
+					};
 					20364892188DBCB700B9C798 = {
 						TestTargetID = 20364871188DBCB600B9C798;
 					};
@@ -250,13 +297,50 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		016AA40C4E7A485393134FF7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D3DC417E1E0341FFBF22E9BA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2036486E188DBCB600B9C798 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2036488C188DBCB600B9C798 /* CAMViewController.m in Sources */,
-				20364886188DBCB600B9C798 /* CAMAppDelegate.m in Sources */,
+				204A62521890DDD1004BD9EE /* SenderViewController.m in Sources */,
+				204A624C1890DC16004BD9EE /* RootViewController.m in Sources */,
+				204A62541890DF8E004BD9EE /* CAMAppDelegate.m in Sources */,
+				204A625C1890F6EC004BD9EE /* NSString+MorseArrayToLetter.m in Sources */,
+				204A625F18917C15004BD9EE /* CFMagicEvents.m in Sources */,
+				204A624F1890DDBF004BD9EE /* ReceiverViewController.m in Sources */,
 				20364882188DBCB600B9C798 /* main.m in Sources */,
 				203648AC188DC8C000B9C798 /* NSString+MorseCode.m in Sources */,
 			);
@@ -341,7 +425,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -374,7 +458,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -382,26 +466,34 @@
 		};
 		203648A5188DBCB700B9C798 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4356823E0BE7479F861D1090 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MorseCode/MorseCode-Prefix.pch";
 				INFOPLIST_FILE = "MorseCode/MorseCode-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		203648A6188DBCB700B9C798 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4356823E0BE7479F861D1090 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MorseCode/MorseCode-Prefix.pch";
 				INFOPLIST_FILE = "MorseCode/MorseCode-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -6,6 +6,8 @@
 	<string>en</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>UIApplicationExitsOnSuspend</key>
+	<true/>
 	<key>CFBundleIdentifier</key>
 	<string>com.meehan.iPhone.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
