@@ -12,7 +12,10 @@
 #import <M13ProgressSuite/M13ProgressViewPie.h> // For a HUD showing sending progress.
 #import <BDKNotifyHUD/BDKNotifyHUD.h> // For a HUD showing the current letter being sent.
 
-@interface SenderViewController ()
+@interface SenderViewController (){
+    float timeMagnitude;
+}
+- (IBAction)valueChanged:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *myUIActivateButton; // This is the only button.
 @property (strong,nonatomic) NSString* theWordBeingSent; // We use this string as a copy of the textview for letter displaying.
 @property (strong,nonatomic) NSOperationQueue *myNSOpQueue; // This will basically hold an array of operations to perform on another queue.
@@ -28,6 +31,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    timeMagnitude = 1.5; //Magnituding the time difference of symbols by 1.5 helps the accuracy.
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
     [self.view addGestureRecognizer:gestureRecognizer];
     letterOrSpaceIterater = 0; //What letter we would be currently displaying (we're not yet though).
@@ -63,7 +67,7 @@
         [self.view addSubview:self.m13PV];
         UIView* someCustomView = [[UIView alloc]init]; // The letter displaying HUD wants a UIView upon initialization.
         self.bDKNHUD = [BDKNotifyHUD notifyHUDWithView:someCustomView text:@""];
-        self.bDKNHUD.center = CGPointMake(self.view.center.x + 80, 240);
+        self.bDKNHUD.center = CGPointMake(self.view.center.x + 40, 240);
         [self.view addSubview:self.bDKNHUD];
         self.myNSOpQueue = [[NSOperationQueue alloc]init]; // He hit go, lets get the NSOperationQueue ready to take operations.
         [self.myNSOpQueue setMaxConcurrentOperationCount:1]; // This NSOperationQueue (aka: holder of NSOperations), shall only allow 1 thread.
@@ -107,14 +111,14 @@
                     // Now lets take this morse letter, and "for" loop through each symbol it contains. (e.g.  dot, dot, dash, dot   )
                     for (NSString *aMorseCodeIndividualSymbol in arrayRepresentingALetter) {
                         if ([aMorseCodeIndividualSymbol isEqualToString:@"."]) {
-                            usleep( 100000 );  // Let's sleep for 0.1 second before shining each symbol, to seperate it from whatever happened before it.
+                            usleep( 100000 * timeMagnitude);  // Let's sleep for 0.1 second before shining each symbol, to seperate it from whatever happened before it.
                             [self turnTorchOn:device]; // Now shine the light for the dot.
-                            usleep( 100000 ); // Now FREEZE this queue for this 0.1 second while the light stays on. Becaue that's the length of a dot.
+                            usleep( 100000 * timeMagnitude); // Now FREEZE this queue for this 0.1 second while the light stays on. Becaue that's the length of a dot.
                             [self turnOffTheTorch]; // Symbol is done.
                         } else if ([aMorseCodeIndividualSymbol isEqualToString:@"-"]) {
-                            usleep( 100000 );  // Let's sleep for 0.1 second before shining each symbol, to seperate it from whatever happened before it.
+                            usleep( 100000 * timeMagnitude);  // Let's sleep for 0.1 second before shining each symbol, to seperate it from whatever happened before it.
                             [self turnTorchOn:device]; // Now shine the light for the dash.
-                            usleep( 300000 ); // Now FREEZE this queue for this 0.3 seconds while the light stays on. Becaue that's the length of a dash.
+                            usleep( 300000 * timeMagnitude); // Now FREEZE this queue for this 0.3 seconds while the light stays on. Becaue that's the length of a dash.
                             [self turnOffTheTorch]; // Symbol is done.
                         }
                         else if([aMorseCodeIndividualSymbol isEqualToString:@"wordspace"]){
@@ -122,7 +126,7 @@
                         }
                     }
                     //This gets called once after every letter (or space). It's pause is what seperates one letter to the next.
-                    usleep(200000); // I want a total of a 0.3 second gap between the end of letterA and the beginning of letterB, but every letter gives a 0.1 second pause after it's over no matter what. So I only need to add 0.2 seconds pause to the end of that. And that's what we're doing.
+                    usleep(200000* timeMagnitude); // I want a total of a 0.3 second gap between the end of letterA and the beginning of letterB, but every letter gives a 0.1 second pause after it's over no matter what. So I only need to add 0.2 seconds pause to the end of that. And that's what we're doing.
                 }];
                 // End of this letter's operation block. Add it to the queue to run the flash sequences.
                 [self.myNSOpQueue addOperation:symbolOperation];
@@ -177,5 +181,16 @@
 
 - (void) hideKeyboard {
     [self.view endEditing:YES];
+}
+- (IBAction)valueChanged:(id)sender {
+    
+    UISwitch* theSwitch = (UISwitch*) sender;
+    if(theSwitch.isOn){
+        timeMagnitude = 1.5;
+    }
+    else{
+        timeMagnitude = 1;
+    }
+    
 }
 @end

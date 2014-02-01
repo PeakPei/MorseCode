@@ -134,14 +134,56 @@ fromConnection:(AVCaptureConnection *)connection{
         // Here, we loop through each "picture square" and tally up their total brightness.
         // RowStart will always point at a "red" byte, anywhere in the pic. It will be incremented by 4 as it scans the coulmns, it will get a total of like 768 incrementations (or however many bytes there are in a row) every time it moves from the beggining of one row to the next.
         // They decided just to count down the "height" variable we obtained as we loop through rows in order to know when the last row has been read. So from our point of view, we're starting with the top row, and counting downward.
-        for (UInt8 *rowStart = EightBitUnsignedInt; height; rowStart += bytesPerRow, height --){// Loop through each row.
-            size_t columnCount = width;// Set up how many columns the following "for" will loop through.
+     
+        
+        int totalRows = height;
+        int totalCount = 0;
+        
+        int rowCount = 0;
+        for (UInt8 *rowStart = EightBitUnsignedInt; rowCount<totalRows; rowStart += bytesPerRow, rowCount++){// Loop through each row.
+            
+            
+
+            int totalColumns = width;// Set up how many columns the following "for" will loop through.
             // Loop through each column in this row. Once again, we start with the max columnCount, and loop down to column # 0. (Right to left).
-            for (UInt8 *p = rowStart; columnCount; p += 4, columnCount --){
-                UInt32 value = (p[0] + p[1] + p[2]); // Here is the only time you get to look at any pixel other than a "red", if you want.
-                totalBrightness += value; // This "pictue square's" brightness is now added to the grand total.
+            int columnCount = 0;
+            for (UInt8 *p = rowStart ; columnCount<totalColumns; p += 4, columnCount++){
+                
+                // Here is where we check the pixels.
+                
+                if((totalColumns*rowCount+columnCount)>6912 && (totalColumns*rowCount+columnCount)<20736){
+
+                    totalCount++;
+
+                    
+                    if(! (( 192.0f/1.333f < (totalColumns*rowCount+columnCount) % 192 ||   48 > (totalColumns*rowCount+columnCount) % 192 )) ){
+                        
+
+                        
+                        // Add it up.
+                       // NSLog(@"row is: %d  col is: %d" , rowCount , columnCount );
+                        UInt32 value = (p[0] + p[1] + p[2]); // Here is the only time you get to look at any pixel other than a "red", if you want.
+                        totalBrightness += value; // This "pictue square's" brightness is now added to the grand total.
+                    }
+                    
+                }
+                
+                
+                
+                    
+
+                
+                
             }
         }
+        
+        
+        
+        
+        
+        NSLog(@"total count is %d" , totalCount);
+        
+        
         CVPixelBufferUnlockBaseAddress(cVIBR, 0); // Now unlock this pixel buffer to free it, now that we're done with this image.
         // If this is the 1st pic we've analyzed.
         if(_lastTotalBrightnessValue==0) _lastTotalBrightnessValue = totalBrightness; // Then set it to the current brightness.
