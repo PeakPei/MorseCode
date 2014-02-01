@@ -84,7 +84,8 @@
                 // Now ask the onDate how long it was activated until now (basically, how long was the last light on for.)
                 NSTimeInterval timeInterval = [onDate timeIntervalSinceNow]* -1.0; // It comes out negative, so we invert it.
                 lightIsOn =NO;
-                if(timeInterval < 0.2){ // A dot is 0.1 seconds long, and dash is 0.3 seconds. Lets split the difference at 0.2
+                // A dot is 0.1 seconds long, and dash is 0.3 seconds. Lets split the difference at 0.2.  
+                if(timeInterval < 0.2){
                     [self.morseLetter addObject:@"."];
                 }
                 else{
@@ -93,7 +94,8 @@
                 // Tell our MAIN's UI to change that square box to black, for "light off".
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     [self.flashIndicator setBackgroundColor:[UIColor blackColor]];
-                }];            }
+                }];
+            }
             lastBrightness = theBrightness; // Cant compare the next pictures brightness to our own unless we save this one.
         }
     }];

@@ -78,11 +78,11 @@
                               kCVPixelBufferPixelFormatTypeKey, nil];
     videoDataOutput.videoSettings = settings;
     // This represents a connection between capture input and capture output objects associated with an AVCaptureSession.
-    AVCaptureConnection *conn = [videoDataOutput connectionWithMediaType:AVMediaTypeVideo];
-    if (conn.isVideoMinFrameDurationSupported)
-        conn.videoMinFrameDuration = CMTimeMake(1, NUMBER_OF_FRAME_PER_S);
-    if (conn.isVideoMaxFrameDurationSupported)
-        conn.videoMaxFrameDuration = CMTimeMake(1, NUMBER_OF_FRAME_PER_S);
+ //   AVCaptureConnection *conn = [videoDataOutput connectionWithMediaType:AVMediaTypeVideo];
+ //   if (conn.isVideoMinFrameDurationSupported)
+ //       conn.videoMinFrameDuration = CMTimeMake(1, NUMBER_OF_FRAME_PER_S);
+ //   if (conn.isVideoMaxFrameDurationSupported)
+ //       conn.videoMaxFrameDuration = CMTimeMake(1, NUMBER_OF_FRAME_PER_S);
     //  we need a serial queue for the video capture delegate callback
     dispatch_queue_t queue = dispatch_queue_create("com.zuckerbreizh.cf", NULL);
     [videoDataOutput setSampleBufferDelegate:(id)self queue:queue];
@@ -142,23 +142,31 @@ fromConnection:(AVCaptureConnection *)connection{
                 totalBrightness += value; // This "pictue square's" brightness is now added to the grand total.
             }
         }
-        CVPixelBufferUnlockBaseAddress(cVIBR, 0); // Now unlock this pixel buffer, now that we're done with this image.
-        if(_lastTotalBrightnessValue==0) _lastTotalBrightnessValue = totalBrightness; // If this is the 1st pic we've analyzed.
+        CVPixelBufferUnlockBaseAddress(cVIBR, 0); // Now unlock this pixel buffer to free it, now that we're done with this image.
+        // If this is the 1st pic we've analyzed.
+        if(_lastTotalBrightnessValue==0) _lastTotalBrightnessValue = totalBrightness; // Then set it to the current brightness.
+        //
         if([self calculateLevelOfBrightness:totalBrightness]<_brightnessThreshold){
             if([self calculateLevelOfBrightness:totalBrightness]>MIN_BRIGHTNESS_THRESHOLD){
+                // This tells the NSNotificationCenter to post a message, other classes are probably supposed to talk to the NotificationCenter, not this class. But we don't use the NotificationCenter at all in this app, we modified this class, and we talk to it.
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"onMagicEventDetected" object:nil];
+                NSLog(@"onnnn");
             }
             else{ //Mobile phone is probably on a table (too dark - camera obturated)
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"onMagicEventNotDetected" object:nil];
+                NSLog(@"not on");
             }
         }
         else{
             _lastTotalBrightnessValue = totalBrightness;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"onMagicEventNotDetected" object:nil];
+            NSLog(@"not on2");
+
         }
     }
 }
 
+// This gives you a ratio of brightness of this brighness value, compared to the last.
 -(int) calculateLevelOfBrightness:(int) pCurrentBrightness{
     return (pCurrentBrightness*100) /_lastTotalBrightnessValue;
 }
