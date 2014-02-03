@@ -52,7 +52,6 @@
 
 - (void)initMagicEvents{
     _started = NO;
-    _brightnessThreshold = BRIGHTNESS_THRESHOLD;
     [NSThread detachNewThreadSelector:@selector(initCapture) toTarget:self withObject:nil];
 }
 
@@ -77,13 +76,6 @@
                               [NSNumber numberWithUnsignedInt:kCVPixelFormatType_32BGRA],
                               kCVPixelBufferPixelFormatTypeKey, nil];
     videoDataOutput.videoSettings = settings;
-    // This represents a connection between capture input and capture output objects associated with an AVCaptureSession.
- //   AVCaptureConnection *conn = [videoDataOutput connectionWithMediaType:AVMediaTypeVideo];
- //   if (conn.isVideoMinFrameDurationSupported)
- //       conn.videoMinFrameDuration = CMTimeMake(1, NUMBER_OF_FRAME_PER_S);
- //   if (conn.isVideoMaxFrameDurationSupported)
- //       conn.videoMaxFrameDuration = CMTimeMake(1, NUMBER_OF_FRAME_PER_S);
-    //  we need a serial queue for the video capture delegate callback
     dispatch_queue_t queue = dispatch_queue_create("com.zuckerbreizh.cf", NULL);
     [videoDataOutput setSampleBufferDelegate:(id)self queue:queue];
     // Lets finally add an output to that AVCaptureSession.
@@ -123,10 +115,7 @@ fromConnection:(AVCaptureConnection *)connection{
     if (CVPixelBufferLockBaseAddress(cVIBR, 0) == kCVReturnSuccess){ // If locking in on this pixel buffer was a success.
         // A UInt8 is an 8-bit unsigned integer (basically like a char). I think this byte holds the "red value" of the very firss pixel. It's address is the very 1st address in a long array of bytes. No seperation into rows or anything. We are on our own to sift through this.
         UInt8 *EightBitUnsignedInt = (UInt8 *)CVPixelBufferGetBaseAddress(cVIBR);
-        //  calculate average brightness in a simple way.         size_t bytesPerRow      = CVPixelBufferGetBytesPerRow(cVIBR); // If we find out how many bytesPerRow, then that is the number of indexes we have to step through to get to the next row. It is actaully the only way to find the next row for this UInt8 paradigm.
         size_t bytesPerRow      = CVPixelBufferGetBytesPerRow(cVIBR); // Which is 768 for iphone 4s.
-        size_t width            = CVPixelBufferGetWidth(cVIBR); // For the iPhone 4s, this was 192. This is like the # of "picture squares".
-        size_t height           = CVPixelBufferGetHeight(cVIBR); // and this was 144. This is like the # of "picture squares".
         UInt32 totalBrightness  = 0; // Lets start with 0 brightness, and add it up as we go.
         
         // So, there are 4 bytes to each "picture square", red,green,blue,alpha. And 4*(width*height) = totalAmountOfBytesInPic, right?
@@ -157,31 +146,9 @@ fromConnection:(AVCaptureConnection *)connection{
         CVPixelBufferUnlockBaseAddress(cVIBR, 0); // Now unlock this pixel buffer to free it, now that we're done with this image.
         // If this is the 1st pic we've analyzed.
         if(_lastTotalBrightnessValue==0) _lastTotalBrightnessValue = totalBrightness; // Then set it to the current brightness.
-        //
-        if([self calculateLevelOfBrightness:totalBrightness]<_brightnessThreshold){
-            if([self calculateLevelOfBrightness:totalBrightness]>MIN_BRIGHTNESS_THRESHOLD){
-                // This tells the NSNotificationCenter to post a message, other classes are probably supposed to talk to the NotificationCenter, not this class. But we don't use the NotificationCenter at all in this app, we modified this class, and we talk to it.
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"onMagicEventDetected" object:nil];
-                NSLog(@"onnnn");
-            }
-            else{ //Mobile phone is probably on a table (too dark - camera obturated)
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"onMagicEventNotDetected" object:nil];
-                NSLog(@"not on");
-            }
-        }
-        else{
-            _lastTotalBrightnessValue = totalBrightness;
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"onMagicEventNotDetected" object:nil];
-            NSLog(@"not on2");
-
-        }
     }
 }
 
-// This gives you a ratio of brightness of this brighness value, compared to the last.
--(int) calculateLevelOfBrightness:(int) pCurrentBrightness{
-    return (pCurrentBrightness*100) /_lastTotalBrightnessValue;
-}
 
 -(int)getLastBrightness{
     return _lastTotalBrightnessValue;

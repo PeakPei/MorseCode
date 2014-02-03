@@ -28,7 +28,7 @@
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     timeMagnitude = 1.5; //Magnituding the time difference of symbols by 1.5 helps the accuracy.
-    sensativiy = 100000; // 100,000 sensativity to start is average.
+    sensativiy = 14000; // 100,000 sensativity to start is average.
     weAreRunning = YES; // Our 2nd queue keeps checking this value to see if it should stop.
     self.morseLetter = [[NSMutableArray alloc]init]; // Get this array ready, that is going to hold an entire letter in morse symbols.
     self.theLabel.text = @""; // Display nothing to the user right now.

@@ -9,8 +9,6 @@
 #import "SenderViewController.h"
 #import "NSString+MorseCode.h"  // We extended the NSString class to handle and convert morse signals to english and vice versa.
 #import <AVFoundation/AVFoundation.h> // Foundation for our camera flasher.
-#import <M13ProgressSuite/M13ProgressViewPie.h> // For a HUD showing sending progress.
-#import <BDKNotifyHUD/BDKNotifyHUD.h> // For a HUD showing the current letter being sent.
 
 @interface SenderViewController (){
     float timeMagnitude;
@@ -19,8 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *myUIActivateButton; // This is the only button.
 @property (strong,nonatomic) NSString* theWordBeingSent; // We use this string as a copy of the textview for letter displaying.
 @property (strong,nonatomic) NSOperationQueue *myNSOpQueue; // This will basically hold an array of operations to perform on another queue.
-@property (strong,nonatomic) M13ProgressViewPie* m13PV; // A HUD showing sending progress.
-@property (strong,nonatomic) BDKNotifyHUD* bDKNHUD; // A HUD showing the current letter being sent.
+
 @end
 
 @implementation SenderViewController
@@ -48,8 +45,7 @@
     // Then we just hit the "cancel" button. The 2nd queue keeps checking back to see if this button was clicked. And will soon see it is.
     if(goIsNowTheCancellButton){
         letterOrSpaceIterater = 0; // Start this over for next time.
-        [self.m13PV setHidden:YES];// kill the hud
-        [self.bDKNHUD setHidden:YES];// kill the hud
+
         goIsNowTheCancellButton = NO; // Go is now the "go" button again.
         [self.myUIActivateButton setTitle:@"send" forState:UIControlStateNormal];
         [self.myUIActivateButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -59,16 +55,6 @@
     // Then we just hit the "Send" button, it's go time.
     else{
         //Lets set up the HUD to display these letters and progress.
-        float hUDWidth = 100.0;
-        float progressX = (self.view.frame.size.width/2.0)-(hUDWidth/2.0)-98; // Set the progress HUD a bit to the left from center.
-        float originY = 155.0; // And 155 from top of screen
-        self.m13PV = [[M13ProgressViewPie alloc]initWithFrame:CGRectMake(progressX,originY,hUDWidth,hUDWidth)];
-        [self.m13PV setProgress:0 animated:YES];
-        [self.view addSubview:self.m13PV];
-        UIView* someCustomView = [[UIView alloc]init]; // The letter displaying HUD wants a UIView upon initialization.
-        self.bDKNHUD = [BDKNotifyHUD notifyHUDWithView:someCustomView text:@""];
-        self.bDKNHUD.center = CGPointMake(self.view.center.x + 40, 240);
-        [self.view addSubview:self.bDKNHUD];
         self.myNSOpQueue = [[NSOperationQueue alloc]init]; // He hit go, lets get the NSOperationQueue ready to take operations.
         [self.myNSOpQueue setMaxConcurrentOperationCount:1]; // This NSOperationQueue (aka: holder of NSOperations), shall only allow 1 thread.
         self.theWordBeingSent = self.myTextField.text;// Copy the string in the text view in case the user keeps typing.
@@ -105,8 +91,6 @@
                 [symbolOperation addExecutionBlock:^{
                     // Lets really quickly tell our MAIN queue to display the next iterating english letter (or space) of the sentence.
                     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        [self letsDisplayTheNextLetter];
-                        [self.m13PV setProgress:(float)currentLetterCount/(float)numOfLetters animated:YES]; // And adjust our progress.
                     }]; // End of message to MAIN.
                     // Now lets take this morse letter, and "for" loop through each symbol it contains. (e.g.  dot, dot, dash, dot   )
                     for (NSString *aMorseCodeIndividualSymbol in arrayRepresentingALetter) {
@@ -143,7 +127,6 @@
             [finalUICleanupOperation addExecutionBlock:^{
                 [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                     letterOrSpaceIterater = 0; // Starts this over for the progress meter HUD
-                    [self.m13PV setHidden:YES]; // Bye bye HUD
                     [self goWasHit:nil]; // Let's call the method that gets called when we hit cancel, (which resets our button back and such).
                 }];
             }];
@@ -160,16 +143,7 @@
     [self.myUIActivateButton setEnabled:![sender.text isEqualToString:@""]]; // And it constantly sends back a result.
 }
 
--(void)letsDisplayTheNextLetter{   // This method uses the copy of the text field that we took to display the next letter to the user.
-    if(letterOrSpaceIterater<self.theWordBeingSent.length){ // "If" I'm not reading a letter out of the range of the string, we will display it.
-        NSString* thisChar = [self.theWordBeingSent substringWithRange:NSMakeRange(letterOrSpaceIterater, 1)]; // Get the letter.
-        [self.bDKNHUD setText:thisChar]; // Give it to our HUD.
-        [self.bDKNHUD presentWithDuration:0.5f speed:0.5f inView:self.view completion:^{ // Show it off for 0.5 seconds.
-            // I got nothin for completion.
-        }];
-        letterOrSpaceIterater++; // Get the counter ready to display the next number.
-    }
-}
+
 
 -(void)turnOffTheTorch{
     AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
