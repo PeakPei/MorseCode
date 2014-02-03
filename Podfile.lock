@@ -1,0 +1,13 @@
+PODS:
+  - BDKNotifyHUD (1.1.0)
+  - M13ProgressSuite (1.0.0)
+
+DEPENDENCIES:
+  - BDKNotifyHUD (~> 1.1.0)
+  - M13ProgressSuite (~> 1.0.0)
+
+SPEC CHECKSUMS:
+  BDKNotifyHUD: efda37564bafd510dd56b972ea2ad8318a11751c
+  M13ProgressSuite: 34c28a6eb72313660b4676ec2f05742a665700a7
+
+COCOAPODS: 0.29.0
