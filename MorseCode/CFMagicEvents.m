@@ -143,12 +143,26 @@ fromConnection:(AVCaptureConnection *)connection{
             }
         }
         
-        CVPixelBufferUnlockBaseAddress(cVIBR, 0); // Now unlock this pixel buffer to free it, now that we're done with this image.
-        // If this is the 1st pic we've analyzed.
-        if(_lastTotalBrightnessValue==0) _lastTotalBrightnessValue = totalBrightness; // Then set it to the current brightness.
+        CVPixelBufferUnlockBaseAddress(cVIBR, 0); // Now unlock this pixel buffer, now that we're done with this image.
+        if(_lastTotalBrightnessValue==0) _lastTotalBrightnessValue = totalBrightness; // If this is the 1st pic we've analyzed.
+        if([self calculateLevelOfBrightness:totalBrightness]<_brightnessThreshold){
+            if([self calculateLevelOfBrightness:totalBrightness]>MIN_BRIGHTNESS_THRESHOLD){
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"onMagicEventDetected" object:nil];
+            }
+            else{ //Mobile phone is probably on a table (too dark - camera obturated)
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"onMagicEventNotDetected" object:nil];
+            }
+        }
+        else{
+            _lastTotalBrightnessValue = totalBrightness;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"onMagicEventNotDetected" object:nil];
+        }
     }
 }
 
+-(int) calculateLevelOfBrightness:(int) pCurrentBrightness{
+    return (pCurrentBrightness*100) /_lastTotalBrightnessValue;
+}
 
 -(int)getLastBrightness{
     return _lastTotalBrightnessValue;

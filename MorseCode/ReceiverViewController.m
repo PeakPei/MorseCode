@@ -42,9 +42,9 @@
         onDate = [NSDate date];    // So it has something to compare to the very first time.
         offDate = [NSDate date];    // So it has something to compare to the very first time.
         while(weAreRunning){
-            
             // When we back out of the screen, this gets set to "NO" and this infinit camera loop stops, and then so will the operationQueue.
             int theBrightness = [cFME getLastBrightness]; // This is our most valueable method call, it's how we get the current level of brightness.
+            NSLog(@"the brightness is %d" , theBrightness);
             if(theBrightness-lastBrightness > sensativiy && !lightIsOn){ // Just turned on. It got really bright, and we weren'n on before?
                 // Now ask the offDate how long it was activated until now (basically, how long has the light been off for.)
                 NSTimeInterval timeInterval = [offDate timeIntervalSinceNow] * -1.0; // It comes out negative, so we invert it.
